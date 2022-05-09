@@ -18,7 +18,17 @@ def login_required(f):
 
 def lookup(list):
     try:
-        api_key=os.environ.get("API_KEY")
-        url = f""
+        url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients"
+
+        querystring = {"ingredients": "apples,flour,sugar", "number": "5", "ignorePantry": "true", "ranking": "2"}
+
+        headers = {
+            "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+            "X-RapidAPI-Key": "3a0459353amsh5d58f0cb91c5ebep144016jsn2e9b23ae44f3"
+        }
+
+        response = requests.request("GET", url, headers=headers, params=querystring)
+
+        print(response.text)
     except requests.RequestException:
         return None

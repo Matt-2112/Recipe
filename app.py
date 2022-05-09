@@ -109,6 +109,12 @@ def login():
 
         return redirect("/")
 
+    @app.route("/pantry", methods=["GET", "POST"])
+    def pantry():
+        if request.method == "GET":
+            return render_template("pantry.html")
+
+
 
 
 if __name__ == '__main__':
