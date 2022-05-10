@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block main %}
+    <ul>
+        {% for recipe in recipes %}
+            <li class="media">
+                <img src="{{ recipe['image'] }}" class="align-self-center mr-3"
+                alt="..." width="15%" height="15%">
+
+                <h5><a href="/recipe?id={{ recipe['id'] }}">{{ recipe['title'] }}</a></h5>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

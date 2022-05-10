@@ -2,6 +2,7 @@ import os
 from flask import Flask, flash, render_template, redirect, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
+import requests
 import sqlite3
 
 from helpers import login_required
@@ -109,10 +110,28 @@ def login():
 
         return redirect("/")
 
-    @app.route("/pantry", methods=["GET", "POST"])
-    def pantry():
-        if request.method == "GET":
-            return render_template("pantry.html")
+@app.route("/pantry", methods=["GET", "POST"])
+def pantry():
+    if request.method == "GET":
+        return render_template("pantry.html")
+    if request.method == "POST":
+        ingredients = request.form.get("ingredient")
+        try:
+            url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients"
+
+            querystring = {"ingredients": ingredients, "number": "5", "ignorePantry": "true", "ranking": "2"}
+
+            headers = {
+                "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+                "X-RapidAPI-Key": "3a0459353amsh5d58f0cb91c5ebep144016jsn2e9b23ae44f3"
+            }
+
+            response = requests.request("GET", url, headers=headers, params=querystring)
+
+            print(response.text)
+            return render_template("results.html", recipes=response)
+        except requests.RequestException:
+            return None
 
 
 
