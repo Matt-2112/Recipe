@@ -119,16 +119,16 @@ def pantry():
         try:
             url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients"
 
-            querystring = {"ingredients": ingredients, "number": "5", "ignorePantry": "true", "ranking": "2"}
+            querystring = {"ingredients": ingredients, "number": "5", "ignorePantry": "false", "ranking": "1"}
 
             headers = {
                 "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
                 "X-RapidAPI-Key": "3a0459353amsh5d58f0cb91c5ebep144016jsn2e9b23ae44f3"
             }
 
-            response = requests.request("GET", url, headers=headers, params=querystring)
+            response = requests.request("GET", url, headers=headers, params=querystring).json()
 
-            print(response.text)
+            #print(response.text)
             return render_template("results.html", recipes=response)
         except requests.RequestException:
             return None
