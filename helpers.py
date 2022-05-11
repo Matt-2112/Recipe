@@ -34,7 +34,7 @@ def lookup(list):
         return None
 
 def get_recipe(id):
-    url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/479101/information"
+    url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + str(id) + "/information"
 
     headers = {
         "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",

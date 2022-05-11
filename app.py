@@ -103,7 +103,7 @@ def login():
 
         #check there is only one user with such name and password is correct
         if check_password_hash(pHash, passIn) == False:
-            raise Exception(passIn)
+            return render_template("errorlog.html")
 
         #remember active user
         session["user_id"] = id[0]
