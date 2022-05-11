@@ -32,3 +32,18 @@ def lookup(list):
         print(response.text)
     except requests.RequestException:
         return None
+
+def get_recipe(id):
+    url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/479101/information"
+
+    headers = {
+        "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": "3a0459353amsh5d58f0cb91c5ebep144016jsn2e9b23ae44f3"
+    }
+
+    response = requests.request("GET", url, headers=headers).json()
+
+    link = response['sourceUrl']
+
+    return link
+

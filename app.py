@@ -5,7 +5,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import requests
 import sqlite3
 
-from helpers import login_required
+from helpers import login_required, get_recipe
 
 app = Flask(__name__)
 #configure session
@@ -115,7 +115,7 @@ def pantry():
     if request.method == "GET":
         return render_template("pantry.html")
     if request.method == "POST":
-        ingredients = request.form.get("ingredient")
+        ingredients = request.form.get("ingredient").strip()
         try:
             url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients"
 
@@ -128,11 +128,9 @@ def pantry():
 
             response = requests.request("GET", url, headers=headers, params=querystring).json()
 
-            #print(response.text)
-            return render_template("results.html", recipes=response)
+            return render_template("results.html", recipes=response, get_recipe=get_recipe)
         except requests.RequestException:
             return None
-
 
 
 
