@@ -13,12 +13,56 @@
 
 }
 
+.main-bg{
+    background-color: rgba(0, 0, 0, .1);
+}
+
 .main-header{
-    background-color: rgba(0, 0, 0, .6);
+    background-color: rgba(0, 0, 0, .3);
     background-image: url("images/grilled -cheese-painting.jpg");
     background-blend-mode: multiply;
     background-size: cover;
     padding-bottom: 30px;
 
 }
+
+.title{
+    text-align: center;
+    margin: 0;
+    font-size: 4em;
+}
+
+.title-large{
+    font-size: 8em;
+    padding: .7em;
+}
+
+.section-header {
+    font-family: Helvetica;
+    font-weight: normal;
+    color: #333;
+    text-align: center;
+    font-size: 2.5em;
+    padding: 1em;
+}
+
+.sub-header{
+    font-size: 1.5em;
+}
+
+.home-image {
+    float: inside;
+    height: 400px;
+    width: 280px;
+    margin: 15px;
+    border-radius: 50%
+}
+
+.main-footer {
+    background-color: #e59898;
+    color: white;
+    padding: .25em 0;
+}
+
+
 
