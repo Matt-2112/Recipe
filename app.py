@@ -92,12 +92,8 @@ def login():
         passIn = request.form.get("password")
         cursor.execute("SELECT * FROM users WHERE username = ?", (user,))
         users = cursor.fetchall()
-        #hashQuery = cursor.execute("SELECT hash FROM users WHERE username = ?", (user,))
-        #pHash = cursor.fetchall()
-        #idQuery = cursor.execute("SELECT id FROM users WHERE username = ?", (user, ))
-        #id = cursor.fetchall()
 
-        #check there is only one user with such name and password is correct
+        #check password is correct
         if check_password_hash(users[0][2], passIn) == False:
             return render_template("errorlog.html")
 
