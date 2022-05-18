@@ -89,22 +89,22 @@ def login():
             return render_template("error.html")
 
         user = request.form.get("user")
+        passIn = request.form.get("password")
         cursor.execute("SELECT * FROM users WHERE username = ?", (user,))
         users = cursor.fetchall()
         #hashQuery = cursor.execute("SELECT hash FROM users WHERE username = ?", (user,))
         #pHash = cursor.fetchall()
-        passIn = request.form.get("password")
         #idQuery = cursor.execute("SELECT id FROM users WHERE username = ?", (user, ))
         #id = cursor.fetchall()
 
         #check there is only one user with such name and password is correct
-        if check_password_hash(users[0]["hash"], passIn) == False:
+        if check_password_hash(users[0][2], passIn) == False:
             return render_template("errorlog.html")
 
         cursor.close()
 
         #remember active user
-        session["user_id"] = id[0]
+        session["user_id"] = users[0][0]
 
         return redirect("/")
 
